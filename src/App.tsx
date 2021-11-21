@@ -1,8 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Test } from "./Test"
+import { Subscribe } from '@react-rxjs/core';
+import { useState } from 'react';
+import { webSocket, WebSocketSubject} from "rxjs/webSocket" 
 
 function App() {
+
+  const [ws, setWS] = useState(webSocket<String>("ws://localhost:8080"))
   return (
     <div className="App">
       <header className="App-header">
@@ -19,6 +25,10 @@ function App() {
           Learn React
         </a>
       </header>
+      <Subscribe>
+      <Test ws={ws}/>
+
+      </Subscribe>
     </div>
   );
 }
